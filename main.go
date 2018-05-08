@@ -13,7 +13,7 @@ import (
 var (
 	flgVer = flag.Bool("version", false, "Version")
 
-	version = "0.1"
+	version = "0.3.0"
 )
 
 type Declaration struct {
@@ -38,7 +38,7 @@ func main() {
 	}
 	fset := token.NewFileSet()
 	asts, _ := parser.ParseDir(fset, args[0], nil, parser.ParseComments)
-	var decls []Declaration
+	var decls = make([]Declaration, 0)
 	for _, a := range asts {
 		for filename, file := range a.Files {
 			for _, decl := range file.Decls {
